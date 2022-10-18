@@ -177,6 +177,9 @@
         {
           "data": {"url": "bfro_locations.csv"},
           "projection": {"type": "albersUsa"},
+          "transform": [{
+            "filter": {"field": "longitude", "range": [-180, 180]}
+          }],
           "mark": {
             "type": "circle",
             "clip": true,
