@@ -171,6 +171,7 @@
               "select": {"type": "point", "fields": ["density"]},
               "bind": "legend"
             }
+          ],
           "encoding": {
             "color": {
               "field": "density",
@@ -179,7 +180,7 @@
               "scale": {"scheme": "yellowgreen"}
             },
              "opacity": {
-              "condition": {"param": "density", "value": 0.1},
+              "condition": {"param": "density", "value": 0.1}
             }
           }
         },
