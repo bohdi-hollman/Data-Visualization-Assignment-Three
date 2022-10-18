@@ -163,14 +163,23 @@
             "type": "geoshape",
             "stroke": "darkgreen",
             "strokeOpacity": 0.3,
-            "opacity": 0.35
+            "opacity": 0.45
           },
+          "params": [
+            {
+              "name": "density",
+              "select": {"type": "point", "fields": ["denisty"]},
+              "bind": "legend"
+            }
           "encoding": {
             "color": {
               "field": "density",
               "title": "2016 Forest Cover By State (%)",
               "type": "quantitative",
               "scale": {"scheme": "yellowgreen"}
+            },
+             "opacity": {
+              "condition": {"param": "Season", "value": 0.1},
             }
           }
         },
