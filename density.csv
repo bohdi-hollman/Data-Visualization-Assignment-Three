@@ -1,0 +1,53 @@
+state,id,density
+Alabama,1,0.7057
+Alaska,2,0.3516
+Arizona,4,0.2564
+Arkansas,5,0.5631
+California,6,0.3271
+Colorado,8,0.3442
+Connecticut,9,0.5524
+Delaware,10,0.2726
+District of Columbia,11,0.339
+Florida,12,0.5068
+Georgia,13,0.6728
+Hawaii,15,0.4253
+Idaho,16,0.4055
+Illinois,17,0.1364
+Indiana,18,0.2106
+Iowa,19,0.0843
+Kansas,20,0.0478
+Kentucky,21,0.4935
+Louisiana,22,0.532
+Maine,23,0.8946
+Maryland,24,0.3936
+Massachusetts,25,0.6057
+Michigan,26,0.5562
+Minnesota,27,0.3408
+Mississippi,28,0.6507
+Missouri,29,0.3516
+Montana,30,0.2745
+Nebraska,31,0.032
+Nevada,32,0.1589
+New Hampshire,33,0.8432
+New Jersey,34,0.4172
+New Mexico,35,0.3199
+New York,36,0.6288
+North Carolina,37,0.5973
+North Dakota,38,0.0172
+Ohio,39,0.3092
+Oklahoma,40,0.288
+Oregon,41,0.4851
+Pennsylvania,42,0.586
+Rhode Island,44,0.5438
+South Carolina,45,0.6819
+South Dakota,46,0.0393
+Tennessee,47,0.5283
+Texas,48,0.3733
+Utah,49,0.3448
+Vermont,50,0.77811
+Virginia,51,0.6293
+Washington,53,0.5274
+West Virginia,54,0.7901
+Wisconsin,55,0.4898
+Wyoming,56,0.1842
+Puerto Rico,72,0.5562

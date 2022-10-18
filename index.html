@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.8"></script>
+</head>
+<body>
+  <h1 style="text-align: center">Bohdi Hollman - Data Visualization Assignment Three</h1>
+  <hr>
+  <h2>Hypothesis: Bigfoot Sightings in the United States and on the Canadian-American Border Are More Frequent in the Summer</h2>
+  <hr>
+  <br>
+  <div id="vis"/>
+  <script>
+    const spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "config": {
+    "axis": {
+      "grid": true,
+      "gridOpacity": 0.45,
+      "tickOpacity": 0.5,
+      "tickBand": "extent"
+    }
+  },
+  "vconcat": [
+    {
+      "title": "Fg. 1: Monthly BFRO-Reported Bigfoot Sightings in the United States and Near the Canadian-American Border (1970-2021)",
+      "data": {"url": "bfro_locations.csv"},
+      "mark": {"type": "rect", "clip": true, "tooltip": {"content": "data"}},
+      "encoding": {
+        "y": {
+          "field": "Date",
+          "timeUnit": "month",
+          "type": "ordinal",
+          "title": "Month",
+          "axis": {"titlePadding": 10}
+        },
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "axis": {
+            "titlePadding": 10,
+            "values": [
+              1970,
+              1975,
+              1980,
+              1985,
+              1990,
+              1995,
+              2000,
+              2005,
+              2010,
+              2015,
+              2020
+            ]
+          },
+          "scale": {
+            "domain": [
+              1970,
+              1971,
+              1972,
+              1973,
+              1974,
+              1975,
+              1976,
+              1977,
+              1978,
+              1979,
+              1980,
+              1981,
+              1982,
+              1983,
+              1984,
+              1985,
+              1986,
+              1987,
+              1988,
+              1989,
+              1990,
+              1991,
+              1992,
+              1993,
+              1994,
+              1995,
+              1996,
+              1997,
+              1998,
+              1999,
+              2000,
+              2001,
+              2002,
+              2003,
+              2004,
+              2005,
+              2006,
+              2007,
+              2008,
+              2009,
+              2010,
+              2011,
+              2012,
+              2013,
+              2014,
+              2015,
+              2016,
+              2017,
+              2018,
+              2019,
+              2020,
+              2021
+            ]
+          }
+        },
+        "color": {
+          "aggregate": "sum",
+          "field": "Count",
+          "title": "Number of Sightings",
+          "scale": {"scheme": "goldred"}
+        },
+        "tooltip": [
+          {
+            "field": "Count",
+            "aggregate": "sum",
+            "type": "quantitative",
+            "title": "Number of Sightings"
+          },
+          {
+            "field": "Classification",
+            "aggregate": "distinct",
+            "type": "nominal",
+            "title": "Distinct Classifications"
+          }
+        ]
+      }
+    },
+    {
+      "height": 700,
+      "width": 1000,
+      "title": "Fg. 2: Locations of BFRO-Reported Bigfoot Sightings",
+      "layer": [
+        {
+          "data": {
+            "url": "usa.json",
+            "format": {"type": "topojson", "feature": "states"}
+          },
+          "transform": [
+            {
+              "lookup": "id",
+              "from": {
+                "data": {"url": "density.csv"},
+                "key": "id",
+                "fields": ["density"]
+              }
+            }
+          ],
+          "projection": {"type": "albersUsa"},
+          "mark": {
+            "type": "geoshape",
+            "stroke": "darkgreen",
+            "strokeOpacity": 0.3,
+            "opacity": 0.5
+          },
+          "encoding": {
+            "color": {
+              "field": "density",
+              "title": "2016 Forest Cover By State (%)",
+              "type": "quantitative",
+              "scale": {"scheme": "yellowgreen"}
+            }
+          }
+        },
+        {
+          "data": {"url": "bfro_locations.csv"},
+          "projection": {"type": "albersUsa"},
+          "mark": {
+            "type": "circle",
+            "clip": true,
+            "stroke": "black",
+            "strokeWidth": 0.2,
+            "tooltip": {"content": "data"}
+          },
+          "params": [
+            {
+              "name": "Season",
+              "select": {"type": "point", "fields": ["Season"]},
+              "bind": "legend"
+            }
+          ],
+          "encoding": {
+            "longitude": {"field": "longitude", "type": "quantitative"},
+            "latitude": {"field": "latitude", "type": "quantitative"},
+            "tooltip": [
+              {
+                "field": "number",
+                "type": "quantitative",
+                "title": "Sighting Descriptor"
+              },
+              {"field": "title", "type": "nominal", "title": "Report Details"},
+              {"field": "Classification", "type": "nominal"},
+              {"field": "actdate", "type": "nominal", "title": "Date"}
+            ],
+            "size": {"value": 15},
+            "color": {
+              "field": "Season",
+              "type": "nominal",
+              "scale": {
+                "domain": ["Winter", "Spring", "Summer", "Autumn"],
+                "range": ["#78A2CC", "#da94ff", "#FF6961", "#FAC898"]
+              }
+            },
+            "opacity": {
+              "condition": {"param": "Season", "value": 1},
+              "value": 0.1
+            }
+          }
+        }
+      ]
+    }
+  ]
+};
+    vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
+  </script>
+  <br>
+  <hr>
+  <p><b>Figure 1</b> is a heat-map raster visualization, depicting the density (summed count) of Bigfoot sightings for each month in the years 1970-2021. The yellow-to-red color scheme indicates a greater count at a specific key on the grid. The raster is interactive with ToolTip, so hovering over the keys displays the number of sightings for that particular month, as well as the number of distinct sighting classifications (A, B, or C).</p>
+  <p><b>Figure 2</b> is a choropleth map of the United States of America, which displays various points corresponding to the locations of each recorded Bigfoot sighting. The color of each state in the choropleth map corresponds to the state's forest coverage, most recently depicting the year 2016, expressed as a percent. Thus, darker greens correspond to states with higher forest coverage. The points on the map, as stated before, correspond to each instance of a recorded sighting. The colors distinguish which season that sighting occured (Winter is November - February, Spring is March - May, Summer is June - August, and Fall is September - October). 
+  This map is interactive using ToolTip as well. Hovering over each point shows additional information, such as the BFRO's numerical sighting descriptor, BFRO report details, the sighting classification, and the date. Each season in the legend may be clicked in order to isolate the points corresponding to that season.</p>
+  <b>
+  <ul>
+    <li><small>The data that constitutes the Bigfoot sighting data (and all corresponding information) chiefly comes from the Bigfoot Field Researchers Organization's (BFRO) Bigfoot sighting database, found on their official website: <i>http://www.bfro.net/GDB/default.asp</i>. This data has been converted into a csv file by Tim Renner on data.world, which can be found here: <i>https://data.world/timothyrenner/bfro-sightings-data</i>. I have adapted this csv for my data.</small></li>
+    <li><small>The data that constitutes the map of the United States comes from the data section of Vega's GitHub: <i>https://github.com/vega/vega/blob/main/docs/data/us-10m.json</i>.</small></li>
+    <li><small>The data that constitutes the forest coverage percentages by state come from a Wikipedia graph (found here: <i>https://en.wikipedia.org/wiki/Forest_cover_by_state_and_territory_in_the_United_States#cite_note-USDA1-1</i>), which was taken from the Forest Inventory and Analysis Fiscal Year 2016 Business Report by the USDA.</em></small></li>
+    <li><small>All .csv files used for this project were created by me using the sources listed above.</small></li>
+  </ul>
+</body>
+</html>
