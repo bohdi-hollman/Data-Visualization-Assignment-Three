@@ -4,6 +4,8 @@
   <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.2.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.20.8"></script>
+  <style media="screen">
+  </style>
 </head>
 <body>
   <h1 style="text-align: center">Bohdi Hollman - Data Visualization Assignment Three</h1>
@@ -34,27 +36,11 @@
           "timeUnit": "month",
           "type": "ordinal",
           "title": "Month",
-          "axis": {"titlePadding": 10},
-          "scale": {
-            "domain": [
-              "Jan",
-              "Feb",
-              "Mar",
-              "Apr",
-              "May",
-              "Jun",
-              "Jul",
-              "Aug",
-              "Sep",
-              "Oct",
-              "Nov",
-              "Dec"
-            ]
-          }
+          "axis": {"titlePadding": 10}
         },
         "x": {
           "field": "Year",
-          "type": "ordinal",
+          "type": "nominal",
           "axis": {
             "titlePadding": 10,
             "values": [
@@ -247,7 +233,6 @@
     <li><small>The data that constitutes the Bigfoot sighting data (and all corresponding information) chiefly comes from the Bigfoot Field Researchers Organization's (BFRO) Bigfoot sighting database, found on their official website: <i>http://www.bfro.net/GDB/default.asp</i>. This data has been converted into a csv file by Tim Renner on data.world, which can be found here: <i>https://data.world/timothyrenner/bfro-sightings-data</i>. I have adapted this csv for my data.</small></li>
     <li><small>The data that constitutes the map of the United States comes from the data section of Vega's GitHub: <i>https://github.com/vega/vega/blob/main/docs/data/us-10m.json</i>.</small></li>
     <li><small>The data that constitutes the forest coverage percentages by state come from a Wikipedia graph (found here: <i>https://en.wikipedia.org/wiki/Forest_cover_by_state_and_territory_in_the_United_States#cite_note-USDA1-1</i>), which was taken from the Forest Inventory and Analysis Fiscal Year 2016 Business Report by the USDA.</em></small></li>
-    <li><small>All .csv files used for this project were created by me using the sources listed above.</small></li>
   </ul>
 </body>
 </html>
