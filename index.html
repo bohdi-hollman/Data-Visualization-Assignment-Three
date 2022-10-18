@@ -168,7 +168,7 @@
           "params": [
             {
               "name": "density",
-              "select": {"type": "point", "fields": ["denisty"]},
+              "select": {"type": "point", "fields": ["density"]},
               "bind": "legend"
             }
           "encoding": {
@@ -179,7 +179,7 @@
               "scale": {"scheme": "yellowgreen"}
             },
              "opacity": {
-              "condition": {"param": "Season", "value": 0.1},
+              "condition": {"param": "density", "value": 0.1},
             }
           }
         },
